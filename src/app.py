@@ -19,7 +19,7 @@ def check_ssl(host: str):
     return res
 
 
-@app.get("/ssl-check/",
+@app.get("/sslcheck/",
          response_model=ValidResult,
          response_description="SSLチェック結果")
 async def read_item(host: str):
