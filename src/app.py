@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from py_ssl_checker import SSLChecker
 
-from schemas import ValidResult
+from .schemas import ValidResult
 
 SSLChecker = SSLChecker()
 
