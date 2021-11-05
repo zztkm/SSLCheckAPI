@@ -1,37 +1,29 @@
 from typing import List
+
 from fastapi import FastAPI
-from py_ssl_checker import SSLChecker
 
-from .schemas import ValidResult
-
-SSLChecker = SSLChecker()
+from .schemas import HostNames, ValidResult
+from .ssl_check import check_ssl
 
 app = FastAPI(
     title="SSL Check API",
     description="collects SSL/TLS information from hosts",
-    version="0.2.0"
+    version="0.3.0",
 )
 
 
-def check_ssl(host: str):
-    cert = SSLChecker.get_cert(host)
-    result = SSLChecker.get_cert_info(host, cert)
-    res = {"host": result["host"], "valid": result["cert_valid"]}
-    return res
-
-
-@app.get("/isssl/",
-         response_model=ValidResult,
-         response_description="SSL対応しているか判定した結果")
+@app.get("/isssl/", response_model=ValidResult, response_description="SSL対応しているか判定した結果")
 async def is_ssl(host: str):
     return check_ssl(host)
 
 
-@app.get("/isssl/bulk/",
-         response_model=List[ValidResult],
-         response_description="SSL対応しているか判定した結果")
-async def is_ssl_bulk(hosts: List[str]):
+@app.get(
+    "/isssl/bulk/",
+    response_model=List[ValidResult],
+    response_description="SSL対応しているか判定した結果",
+)
+async def is_ssl_bulk(req: HostNames):
     res = []
-    for host in hosts:
+    for host in req.hostnames:
         res.append(check_ssl(host))
-    return check_ssl(hosts)
+    return res 
