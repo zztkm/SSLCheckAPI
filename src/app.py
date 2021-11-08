@@ -3,12 +3,12 @@ from typing import List
 from fastapi import FastAPI
 
 from .schemas import HostNames, ValidResult
-from .ssl_check import check_ssl
+from .ssl_check import bulk_check_ssl, check_ssl
 
 app = FastAPI(
     title="SSL Check API",
     description="collects SSL/TLS information from hosts",
-    version="0.3.0",
+    version="0.4.0",
 )
 
 
@@ -23,7 +23,5 @@ async def is_ssl(host: str):
     response_description="SSL対応しているか判定した結果",
 )
 async def is_ssl_bulk(req: HostNames):
-    res = []
-    for host in req.hostnames:
-        res.append(check_ssl(host))
+    res = bulk_check_ssl(req.hostnames)
     return res 
