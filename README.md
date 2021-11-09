@@ -5,7 +5,7 @@ SSL/TLS 検証をするためのAPIです。
 ## 開発時
 
 ```
-(venv) pip install -r requirements.txt
+(venv) pip install -r dev-requirements.txt
 ```
 
 ```
@@ -15,3 +15,7 @@ SSL/TLS 検証をするためのAPIです。
 API ドキュメント
 - OpenAPI | http://localhost:8080/docs
 - ReDoc | http://localhost:8080/redoc
+
+## 注意
+
+requirements.txt を編集する場合は、dev-requirements.txt も同時に編集してください。
