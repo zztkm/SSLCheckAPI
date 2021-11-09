@@ -17,7 +17,7 @@ ssl_check_max_workers = 15
 ssl_check_executor = futures.ThreadPoolExecutor(max_workers=ssl_check_max_workers)
 
 
-def check_ssl(hostname: str) -> str:
+def check_ssl(hostname: str):
     cert_valid = False
     version = None
     err = None

@@ -12,3 +12,9 @@ class ValidResult(BaseModel):
 
 class HostNames(BaseModel):
     hostnames: List[str]
+
+
+class CheckRedirectResponse(BaseModel):
+    host: str
+    request_url: str
+    redirect_url: Optional[str] = None
