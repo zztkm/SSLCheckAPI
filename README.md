@@ -9,7 +9,8 @@ SSL/TLS 検証をするためのAPIです。
 ```
 
 ```
-(venv) uvicorn src.app:app --reload --workers 1 --host 0.0.0.0 --port 8080
+(venv)
+uvicorn src.app:app --reload --workers 1 --host 0.0.0.0 --port 8080
 ```
 
 API ドキュメント

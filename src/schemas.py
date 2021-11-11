@@ -10,6 +10,10 @@ class ValidResult(BaseModel):
     error: Optional[str] = None
 
 
+class HostName(BaseModel):
+    hostname: str
+
+
 class HostNames(BaseModel):
     hostnames: List[str]
 
